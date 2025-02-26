@@ -6,6 +6,16 @@ h2{
     text-align: center;
 }
 img {
-
     margin-top: 200px;
+}
+#serch{
+    border-radius: 10px;
+    padding : 10px 40px;
+}
+i{
+    padding-right:10px;
+}
+#serchmark{
+    border-color: black;
+    box-shadow: inset;
 }
