@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding:0;
+}
+.page1{
+    border:1px solid black;
+    justify-content: center;
+    margin-top: 40%;
+    margin-left: 20%;
+    margin-right: 20%; 
+}
+#title{
+    text-align: center;
+}
+.Login{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.membership{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#login_btn{
+    height: 30px;
+    margin-top:10px ;
+}
+.membership{
+    margin-left: 10px;
+    text-decoration: none;
+    color:black;
+}
+
