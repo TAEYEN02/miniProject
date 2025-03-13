@@ -7,7 +7,8 @@
     justify-content: center;
     margin-top: 40%;
     margin-left: 20%;
-    margin-right: 20%; 
+    margin-right: 20%;
+    padding: 6vh 60px 6vh 60px; 
 }
 #title{
     text-align: center;
@@ -26,7 +27,7 @@
 }
 #login_btn{
     height: 30px;
-    margin-top:10px ;
+    margin-top:20px ;
 }
 .membership{
     margin-left: 10px;

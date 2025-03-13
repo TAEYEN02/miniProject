@@ -1,0 +1,82 @@
+*{
+    margin:0;
+    padding:0;
+}
+#title{
+    text-align: center;
+    justify-content: center;
+    border-top:1px solid black;
+    border-bottom: 1px solid black;
+}
+.nav_Bar{
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+.nav_Bar li{
+    list-style: none;
+    text-align: center;
+}
+.img-box{
+    border-bottom: 1px solid black;
+    padding:20%;
+    position: relative;
+    padding:20%
+}
+.img-box #emotion{
+    position: absolute;
+    bottom:0;
+    right: 0;
+    width: 20%;
+    height: 100px;
+}
+.sample_profile{
+    border-bottom: 1px solid black;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top:30px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+}
+.mini_category {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* DATE, NOTE, TODO를 가로 배치 */
+    gap: 10px; /* 각 항목 간격 */
+    text-align: center;
+}
+
+.mini_category #category {
+    list-style: none;
+    display: contents; /* 내부 요소들이 부모(grid)의 레이아웃을 그대로 따르도록 설정 */
+}
+
+.mini_category #category li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* 컨텐츠 영역을 mini_category의 그리드와 맞춤 */
+.content-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* DATE, NOTE, TODO에 맞게 배치 */
+    gap: 10px;
+
+}
+.content-box {
+    display: flex;
+    flex-direction: column; /* 각 항목 아래 세로 정렬 */
+    align-items: center;
+}
+
+#date-content, #note-content, #todo-content {
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    min-height: 50rch; /* 최소 높이 설정 */
+}
+#todo-list{
+   list-style: none;
+}
