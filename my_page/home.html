@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAEYEON_PAGE🚀</title>
-    <link rel="stylesheet" href="home(1).css">
+    <link rel="stylesheet" href="home_1.css">
+    <script src="js/calender.js"></script>
 </head>
 <body>
     <!-- 좌측 상단 이름 -->
@@ -40,18 +41,20 @@
     </div>
     
   <!-- 같은 컬럼 아래 배치 -->
-<div class="content-container">
-    <div class="content-box">
-        <div id="date-content">
-            <h3>Date Section</h3>
-            <input id="calender" type="date">
-        </div>
+  <div class="calendar-container">
+    <div id="calendar"></div>
+    <div id="schedule">
+        <h3>Selected Date: <span id="selected-date"></span></h3>
+        <ul id="schedule-list"></ul>
+        <input type="text" id="schedule-input" placeholder="새로운 일정 추가">
+        <button onclick="addSchedule()">추가</button>
     </div>
+</div>
 
     <div class="content-box">
         <div id="note-content">
             <h3>Note Section</h3>
-            <p id="note-text">여기에 메모 내용을 입력하세요.</p>
+            <input type="text"id="note-text" placeholder="여기에 메모 내용을 입력하세요.">
         </div>
     </div>
 
