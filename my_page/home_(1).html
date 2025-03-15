@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAEYEON_PAGE🚀</title>
+    <link rel="stylesheet" href="home.css">
+    <script src="js/calender.js"></script>
+</head>
+<body>
+    <!-- 좌측 상단 이름 -->
+    <h4>KIM TAEYEON WEB PROGRAMER</h4>
+    <h2 id="title">MY DIARY</h2>
+
+    <!-- 네비게이션 바 -->
+    <ul class="nav_Bar">
+        <li id="HOME_Bar">HOME</li>
+        <li id="HOME_Bar">DATE</li>
+        <li id="NOTE_Bar">NOTE</li>
+        <li id="TODO_Bar">TODO</li>
+        <li id="PROFILE_Bar">PROFILE</li>
+    </ul>
+
+    <!-- 이미지 및 프로필 영역 -->
+    <div class="img-box">
+        <img src="img/hello-joy.gif" title="기쁨이" id="emotion">
+    </div>
+    
+    <div class="sample_profile">
+        <div id="poto">
+            <img src="#" title="사진" id="profile"> 
+        </div>
+        <div id="report">
+            <p id="name">이름 : </p>
+            <p id="introduction">소개 : </p>
+        </div>
+    </div>
+
+    <!-- 카테고리 메뉴 -->
+    <div class="mini_category">
+        <ul id="category">
+            <li id="date">DATE</li>
+            <li id="note">NOTE</li>
+            <li id="todo">TODO</li>
+        </ul>
+    </div>
+    
+    <!-- 컨텐츠 영역 (가로 배치) -->
+    <div class="content-container">
+        <!-- DATE 섹션 -->
+        <div class="content-box">
+            <div id="date-content">
+                <h3>Date Section</h3>
+                <div id="calendar"></div> <!-- 캘린더 -->
+                <div id="schedule">
+                    <h3>Selected Date: <span id="selected-date"></span></h3>
+                    <ul id="schedule-list"></ul>
+                    <input type="text" id="schedule-input" placeholder="새로운 일정 추가">
+                    <button onclick="addSchedule()">추가</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTE 섹션 -->
+        <div class="content-box">
+            <div id="note-content">
+                <h3>Note Section</h3>
+                <input type="text" id="note-text" placeholder="여기에 메모 내용을 입력하세요.">
+            </div>
+        </div>
+
+        <!-- TODO 섹션 -->
+        <div class="content-box">
+            <div id="todo-content">
+                <h3>Todo Section</h3>
+                <ul id="todo-list">
+                    <li>Todo 1</li>
+                    <li>Todo 2</li>
+                    <li>Todo 3</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
