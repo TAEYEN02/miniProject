@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAEYEON_PAGE🚀</title>
+    <link rel="stylesheet" href="home(1).css">
+</head>
+
+<body>
+    <!-- 좌측 상단 이름 -->
+    <h4>KIM TAEYEON WEB PROGRAMER</h4>
+    <h2 id="title">MY DIARY</h2>
+
+    <!-- 네비게이션 바 -->
+    <ul class="nav_Bar">
+        <li id="HOME">HOME</li>
+        <li id="DATE">DATE</li>
+        <li id="NOTE">NOTE</li>
+        <li id="TODO">TODO</li>
+        <li id="PROFILE">PROFILE</li>
+    </ul>
+
+    <!-- 감정 캘린더 영역 -->
+    <div id="emotion-calendar-container">
+        <!-- 감정 이미지 및 변경 버튼 -->
+        <div class="img-box" style="position: relative;">
+            <button type="button" onclick="toggleEmotionButtons()">감정 변경</button>
+            <div class="emotion-buttons" id="emotion-buttons">
+                <button type="button" onclick="changeEmotion('joy')">기쁨</button>
+                <button type="button" onclick="changeEmotion('angry')">화남</button>
+                <button type="button" onclick="changeEmotion('bored')">지루함</button>
+                <button type="button" onclick="changeEmotion('disgust')">날카로움</button>
+                <button type="button" onclick="changeEmotion('shy')">부끄러움</button>
+                <button type="button" onclick="changeEmotion('scared')">무서움</button>
+                <button type="button" onclick="changeEmotion('sad')">슬픔</button>
+            </div>
+            <img src="img/anger-fear-joy-disgust-and-sadness.gif" alt="Emotion Animation" title="inside_out" id="emotion" onclick="toggleEmotionButtons()">
+        </div>
+
+        <!-- 감정 캘린더 제목 -->
+        <div id="emotion-month-title"></div>
+
+        <!-- 감정 캘린더 -->
+        <div id="emotion-calendar">
+            <div id="emotion-calendar-content"></div> <!-- 감정 캘린더 -->
+        </div>
+
+        <!-- 이전/다음 월 버튼 추가 -->
+        <div id="calendar-controls">
+            <button type="button" onclick="changeMonth('prev')">이전 월</button>
+            <button type="button" onclick="changeMonth('next')">다음 월</button>
+        </div>
+    </div>
+    <hr>
+
+    <!-- 이미지 및 프로필 영역 -->
+    <div class="sample_profile">
+        <div id="poto">
+            <img src="#" alt="프로필 사진" title="사진" id="profile">
+        </div>
+        <div id="report">
+            <p id="name">이름 : </p>
+            <p id="introduction">소개 : </p>
+        </div>
+    </div>
+
+    <!-- 카테고리 메뉴 -->
+    <div class="mini_category">
+        <ul id="category">
+            <li id="date">DATE</li>
+            <li id="note">NOTE</li>
+            <li id="todo">TODO</li>
+        </ul>
+    </div>
+
+    <!-- 컨텐츠 영역 (가로 배치) -->
+    <div class="content-container">
+        <!-- DATE 섹션 -->
+        <div class="content-box">
+            <div id="date-content">
+                <h3>Date Section</h3>
+                <div id="calendar"></div> <!-- 캘린더 -->
+                <div id="schedule">
+                    <h3>Selected Date: <span id="selected-date"></span></h3>
+                    <ul id="schedule-list"></ul>
+                    <input type="text" id="schedule-input" placeholder="새로운 일정 추가">
+                    <button type="button" onclick="addSchedule()">추가</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTE 섹션 -->
+        <div class="content-box">
+            <div id="note-content">
+                <h3>Note Section</h3>
+                <input type="text" id="note-text" placeholder="여기에 메모 내용을 입력하세요.">
+            </div>
+        </div>
+
+        <!-- TODO 섹션 -->
+        <div class="content-box">
+            <div id="todo-content">
+                <h3>Todo Section</h3>
+                <ul id="todo-list">
+                    <li>Todo 1</li>
+                    <li>Todo 2</li>
+                    <li>Todo 3</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 스크립트 파일 -->
+    <script src="js/calender(1).js"></script>
+    <script src="js/emotion.js"></script>
+    <script src="js/emotion-calender_1.js"></script>
+</body>
+
+</html>

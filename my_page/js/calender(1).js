@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // 날짜 채우기
         for (let date = 1; date <= lastDate; date++) {
             let fullDate = `${year}-${month + 1}-${date}`;
-            let hasSchedule = schedules[fullDate] ? "has-schedule" : "";
+            let hasSchedule = schedules[fullDate] && schedules[fullDate].length > 0 ? "has-schedule" : "";
 
             calendarHTML += `<td class="calendar-day ${hasSchedule}" onclick="selectDate('${fullDate}')">${date}</td>`;
 
@@ -49,9 +49,17 @@ document.addEventListener("DOMContentLoaded", function () {
         scheduleList.innerHTML = "";
 
         if (schedules[date]) {
-            schedules[date].forEach(item => {
+            schedules[date].forEach((item, index) => {  // index 추가
                 let li = document.createElement("li");
                 li.innerText = item;
+
+                let deleteButton = document.createElement("button"); // 오타 수정
+                deleteButton.innerText = "❌";
+                deleteButton.onclick = function () {
+                    removeSchedule(date, index);
+                };
+
+                li.appendChild(deleteButton);
                 scheduleList.appendChild(li);
             });
         }
@@ -72,6 +80,20 @@ document.addEventListener("DOMContentLoaded", function () {
         selectDate(date);
         scheduleInput.value = "";
         generateCalendar();
+    };
+
+    window.removeSchedule = function (date, index) {
+        if (schedules[date]) {
+            schedules[date].splice(index, 1);
+            
+            if (schedules[date].length === 0) {
+                delete schedules[date]; // 일정이 없으면 날짜 삭제
+            }
+            localStorage.setItem("schedules", JSON.stringify(schedules));
+
+            selectDate(date); // UI 업데이트
+            generateCalendar(); // 달력 갱신
+        }
     };
 
     generateCalendar();
