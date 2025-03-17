@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAEYEON_PAGE🚀</title>
-    <link rel="stylesheet" href="home(1).css">
+    <link rel="stylesheet" href="css/home(1).css">
 </head>
 
 <body>
@@ -36,11 +36,15 @@
                 <button type="button" onclick="changeEmotion('scared')">무서움</button>
                 <button type="button" onclick="changeEmotion('sad')">슬픔</button>
             </div>
-            <img src="img/anger-fear-joy-disgust-and-sadness.gif" alt="Emotion Animation" title="inside_out" id="emotion" onclick="toggleEmotionButtons()">
+            <img src="img/default.gif" alt="Emotion Animation" title="inside_out" id="emotion" onclick="toggleEmotionButtons()">
         </div>
 
         <!-- 감정 캘린더 제목 -->
-        <div id="emotion-month-title"></div>
+        <div id="emotion-month-title">
+            <!-- <select id="year-select"></select>년
+            <select id="month-select"></select>월
+            <select id="day-select"></select>일 -->
+        </div>
 
         <!-- 감정 캘린더 -->
         <div id="emotion-calendar">
@@ -49,8 +53,8 @@
 
         <!-- 이전/다음 월 버튼 추가 -->
         <div id="calendar-controls">
-            <button type="button" onclick="changeMonth('prev')">이전 월</button>
-            <button type="button" onclick="changeMonth('next')">다음 월</button>
+            <button type="button" onclick="prevMonth()">이전 월</button>
+            <button type="button" onclick="nextMonth()">다음 월</button>
         </div>
     </div>
     <hr>

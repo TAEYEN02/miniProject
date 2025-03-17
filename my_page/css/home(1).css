@@ -55,6 +55,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 30px 10px 20px;
+    margin-top: 20px; /* 캘린더와의 간격 추가 */
 }
 
 /* 카테고리 섹션 */
@@ -210,6 +211,7 @@
 #emotion-calendar {
     flex: 1;  /* 남은 공간을 차지하도록 설정 */
     margin-right: 20px;
+    /* overflow: hidden; */
 }
 
 /* 감정 캘린더 영역을 감싸는 컨테이너 */
@@ -218,6 +220,8 @@
     gap: 20px;
     align-items: flex-start;
     margin-top: 20px;
+    min-height: 400px; /* 최소 높이 설정 */
+
 }
 
 .emotion-day {

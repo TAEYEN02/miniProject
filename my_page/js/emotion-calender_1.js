@@ -17,15 +17,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let currentDate = new Date();
 
+     // 이전/다음 버튼에 이벤트 리스너 추가
+     document.getElementById("calendar-controls").addEventListener("click", function (event) {
+        if (event.target.tagName === "BUTTON") {
+            if (event.target.textContent.includes("이전")) prevMonth();
+            if (event.target.textContent.includes("다음")) nextMonth();
+        }
+    });
+
     // 이전 월로 이동
     function prevMonth() {
         currentDate.setMonth(currentDate.getMonth() - 1);
+        console.log("이전 월:", currentDate); // 디버깅용 출력
         generateEmotionCalendar();  // 달력 갱신
     }
 
     // 다음 월로 이동
     function nextMonth() {
         currentDate.setMonth(currentDate.getMonth() + 1);
+        console.log("다음 월:", currentDate); // 디버깅용 출력
         generateEmotionCalendar();  // 달력 갱신
     }
 
@@ -77,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         emotionSelectedDate.innerText = date;
         emotionImage.style.display = "block";  // 감정 이미지 표시
         emotionButtons.style.display = "block";  // 감정 버튼 표시
-        emotionImage.src = emotions[date] || "img/default.png";  // 선택된 날짜의 감정 이미지 바로 표시
+        emotionImage.src = emotions[date] || "img/default.gif";  // 선택된 날짜의 감정 이미지 바로 표시
     };
 
     // 감정 선택 시 해당 날짜에 이미지 저장하고 캘린더 갱신
@@ -85,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let selectedDate = emotionSelectedDate.innerText;
         if (!selectedDate) return;  // 날짜가 선택되지 않았을 경우 처리
 
-        let emotionImageUrl = emotionImages[emotion] || "img/default.png";  // 선택한 감정 이미지
+        let emotionImageUrl = emotionImages[emotion] || "img/default.gif";  // 선택한 감정 이미지
 
         // 감정 저장
         emotions[selectedDate] = emotionImageUrl;
