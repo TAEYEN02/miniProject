@@ -80,6 +80,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         calendarHTML += "</tr></table>";
         emotionCalendar.innerHTML = calendarHTML;
+
+        // 감정 이미지를 선택된 날짜로 반영
+        updateEmotionImage();
     }
 
     // 날짜 선택 시 감정 이미지와 버튼 표시
@@ -101,13 +104,21 @@ document.addEventListener("DOMContentLoaded", function () {
         emotions[selectedDate] = emotionImageUrl;
         localStorage.setItem("emotions", JSON.stringify(emotions));
 
-        // 감정 이미지 업데이트
-        emotionImage.src = emotionImageUrl;
-
         // 감정 캘린더 갱신
         generateEmotionCalendar();
         emotionButtons.style.display = "none";  // 감정 버튼 숨기기
     };
+
+     // 감정 이미지 업데이트 (선택된 날짜의 이미지 반영)
+     function updateEmotionImage() {
+        const selectedDate = emotionSelectedDate.innerText;
+        if (selectedDate) {
+            emotionImage.src = emotions[selectedDate] || "img/default.gif"; // 선택된 날짜의 이미지 설정
+        }
+    }
+
+        // 감정 버튼들 초기 숨기기 (초기 상태에서 버튼이 보이지 않도록)
+        emotionButtons.style.display = "none";
 
     // 초기 달력 생성
     generateEmotionCalendar();  
