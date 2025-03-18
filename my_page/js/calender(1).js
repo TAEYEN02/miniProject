@@ -34,6 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             calendarHTML += `<td class="calendar-day ${hasSchedule}" onclick="selectDate('${fullDate}')">${date}</td>`;
 
+
+            
             if ((firstDay + date) % 7 === 0) {
                 calendarHTML += "</tr><tr>";
             }
