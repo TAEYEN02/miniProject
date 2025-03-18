@@ -3,14 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const scheduleList = document.getElementById("schedule-list");
     const selectedDateElement = document.getElementById("selected-date");
     const scheduleInput = document.getElementById("schedule-input");
+    const dateHeader = document.querySelector("#date-content h3");
 
     let schedules = JSON.parse(localStorage.getItem("schedules")) || {};
+    let currentYear = new Date().getFullYear();
+    let currentMonth = new Date().getMonth();
 
-    function generateCalendar() {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = today.getMonth();
-
+    function generateCalendar(year, month) {
         let firstDay = new Date(year, month, 1).getDay();
         let lastDate = new Date(year, month + 1, 0).getDate();
 
@@ -42,18 +41,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
         calendarHTML += "</tr></table>";
         calendar.innerHTML = calendarHTML;
+        dateHeader.innerHTML = `<button onclick="changeMonth(-1)">◀</button> ${year}년 ${month + 1}월 <button onclick="changeMonth(1)">▶</button>`;
     }
+
+    window.changeMonth = function (change) {
+        currentMonth += change;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        } else if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        generateCalendar(currentYear, currentMonth);
+    };
 
     window.selectDate = function (date) {
         selectedDateElement.innerText = date;
         scheduleList.innerHTML = "";
 
         if (schedules[date]) {
-            schedules[date].forEach((item, index) => {  // index 추가
+            schedules[date].forEach((item, index) => {
                 let li = document.createElement("li");
                 li.innerText = item;
 
-                let deleteButton = document.createElement("button"); // 오타 수정
+                let deleteButton = document.createElement("button");
                 deleteButton.innerText = "❌";
                 deleteButton.onclick = function () {
                     removeSchedule(date, index);
@@ -79,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         selectDate(date);
         scheduleInput.value = "";
-        generateCalendar();
+        generateCalendar(currentYear, currentMonth);
     };
 
     window.removeSchedule = function (date, index) {
@@ -87,14 +99,14 @@ document.addEventListener("DOMContentLoaded", function () {
             schedules[date].splice(index, 1);
             
             if (schedules[date].length === 0) {
-                delete schedules[date]; // 일정이 없으면 날짜 삭제
+                delete schedules[date];
             }
             localStorage.setItem("schedules", JSON.stringify(schedules));
 
-            selectDate(date); // UI 업데이트
-            generateCalendar(); // 달력 갱신
+            selectDate(date);
+            generateCalendar(currentYear, currentMonth);
         }
     };
 
-    generateCalendar();
+    generateCalendar(currentYear, currentMonth);
 });
