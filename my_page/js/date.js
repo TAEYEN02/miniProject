@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     const calendar = document.getElementById("calendar");
-    const scheduleList = document.getElementById("schedule-list");
-    const selectedDateElement = document.getElementById("selected-date");
-    const scheduleInput = document.getElementById("schedule-input");
     const dateHeader = document.querySelector("#date-content h3");
 
     let schedules = JSON.parse(localStorage.getItem("schedules")) || {};
@@ -33,8 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
             let hasSchedule = schedules[fullDate] && schedules[fullDate].length > 0 ? "has-schedule" : "";
 
             calendarHTML += `<td class="calendar-day ${hasSchedule}" onclick="selectDate('${fullDate}')">${date}</td>`;
-
-
             
             if ((firstDay + date) % 7 === 0) {
                 calendarHTML += "</tr><tr>";
@@ -56,58 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
             currentYear++;
         }
         generateCalendar(currentYear, currentMonth);
-    };
-
-    window.selectDate = function (date) {
-        selectedDateElement.innerText = date;
-        scheduleList.innerHTML = "";
-
-        if (schedules[date]) {
-            schedules[date].forEach((item, index) => {
-                let li = document.createElement("li");
-                li.innerText = item;
-
-                let deleteButton = document.createElement("button");
-                deleteButton.innerText = "❌";
-                deleteButton.onclick = function () {
-                    removeSchedule(date, index);
-                };
-
-                li.appendChild(deleteButton);
-                scheduleList.appendChild(li);
-            });
-        }
-    };
-
-    window.addSchedule = function () {
-        let date = selectedDateElement.innerText;
-        let newSchedule = scheduleInput.value.trim();
-        if (!date || !newSchedule) return;
-
-        if (!schedules[date]) {
-            schedules[date] = [];
-        }
-
-        schedules[date].push(newSchedule);
-        localStorage.setItem("schedules", JSON.stringify(schedules));
-
-        selectDate(date);
-        scheduleInput.value = "";
-        generateCalendar(currentYear, currentMonth);
-    };
-
-    window.removeSchedule = function (date, index) {
-        if (schedules[date]) {
-            schedules[date].splice(index, 1);
-            
-            if (schedules[date].length === 0) {
-                delete schedules[date];
-            }
-            localStorage.setItem("schedules", JSON.stringify(schedules));
-
-            selectDate(date);
-            generateCalendar(currentYear, currentMonth);
-        }
     };
 
     generateCalendar(currentYear, currentMonth);

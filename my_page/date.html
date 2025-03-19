@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>가계부</title>
+
+    <style src="/css/date.css"></style>
 </head>
+
 <body>
-    
+    <h4>KIM TAEYEON WEB PROGRAMER</h4>
+    <h2 id="title">MY DIARY</h2>
+
+    <!--네비게이션 바 -->
+    <ul class="nav_Bar">
+        <li id="HOME" data-src="/home.html">HOME</li>
+        <li id="DATE" data-src="/date.html">DATE</li>
+        <li id="NOTE">NOTE</li>
+        <li id="TODO">TODO</li>
+        <li id="PROFILE">PROFILE</li>
+    </ul>
+
+    <div class="content-box">
+        <div id="date-content">
+            <h3>Date Section</h3>
+            <div id="calendar"></div> <!-- 캘린더 -->
+        </div>
+    </div>
+    </div>
+
+    <script src="/js/date.js"></script>
+    <script src="/js/home.js"></script>
 </body>
+
 </html>

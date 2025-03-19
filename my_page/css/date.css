@@ -1,0 +1,29 @@
+*{
+    padding:0;
+    margin:0;
+}
+#calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* 화면 중앙 정렬을 위해 */
+}
+
+#calendar {
+    width: auto;
+    border-collapse: collapse;
+}
+
+#calendar th, #calendar td {
+    border: 1px solid #ddd;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+
+#date-content {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
