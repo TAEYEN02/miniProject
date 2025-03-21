@@ -24,11 +24,12 @@
     list-style: none;
     text-align: center;
 }
+
 .content-box{
     display: flex;
     align-items: center;
     justify-content: center;
-    box-sizing: border-box;
+    flex-direction: column;
 }
 
 
@@ -54,6 +55,17 @@
     min-width: 40px;  /* 최소 너비를 설정 */
     min-height: 40px;  /* 최소 높이를 설정 */
     cursor: pointer;
+}
+.calendar-day {
+    cursor: pointer;
+}
+
+.has-expense {
+    background-color: lightyellow;
+}
+
+.has-schedule {
+    background-color: lightblue;
 }
 
 #date-content {
@@ -92,3 +104,17 @@
 }
 
 
+/* 그래프 및 가계부 스타일 */
+#graph-container {
+    display: inline-block;
+    vertical-align: top;
+    width: 60%;
+}
+
+#expense-list {
+    margin-top: 20px;
+}
+
+#expense-list-items li {
+    list-style-type: none;
+}

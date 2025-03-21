@@ -1,45 +1,47 @@
 document.addEventListener("DOMContentLoaded", function () {
     const calendar = document.getElementById("calendar");
-    const dateHeader = document.querySelector("#date-content h3");
+    const expenseList = document.getElementById("expense-list-items");
+    const expenseChartCanvas = document.getElementById("expense-chart");
     const modal = document.getElementById("expense-modal");
     const closeModal = document.querySelector(".close");
     const saveExpense = document.getElementById("save-expense");
 
+    //일정 데이터를 로컬 스토리지에서 불러옴
     let schedules = JSON.parse(localStorage.getItem("schedules")) || {};
+    let homeSchedule = JSON.parse(localStorage.getItem("homeSchedule")) || {}; // home.html 일정 데이터
     let currentYear = new Date().getFullYear();
     let currentMonth = new Date().getMonth();
     let selectedDate = null;
 
+    // 캘린더 생성 함수
     function generateCalendar(year, month) {
         let firstDay = new Date(year, month, 1).getDay();
         let lastDate = new Date(year, month + 1, 0).getDate();
         let calendarHTML = "<table><tr>";
         
-        //요일헤더
         const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
         days.forEach(day => {
             calendarHTML += `<th>${day}</th>`;
         });
         calendarHTML += "</tr><tr>";
 
-        //첫 주 빈칸 채우기
         for (let i = 0; i < firstDay; i++) {
             calendarHTML += "<td></td>";
         }
-
         //날짜 채우기
         for (let date = 1; date <= lastDate; date++) {
             let fullDate = `${year}-${month + 1}-${date}`;
-            let hasExpense = schedules[fullDate] && schedules[fullDate].expenses && schedules[fullDate].expenses.length > 0 ? "has-expense" : "";
+            let hasExpense = schedules[fullDate] && schedules[fullDate].expenses ? "has-expense" : "";
+            let hasSchedule = homeSchedule[fullDate] ? "has-schedule" : ""; // 일정 표시
+            
             let expenseHTML = "";
-
             if (schedules[fullDate] && schedules[fullDate].expenses) {
                 schedules[fullDate].expenses.forEach(expense => {
                     expenseHTML += `<div class="expense-list">${expense.item}: ${expense.amount}원</div>`;
                 });
             }
 
-            calendarHTML += `<td class="calendar-day ${hasExpense}" onclick="selectDate('${fullDate}')">${date}${expenseHTML}</td>`;
+            calendarHTML += `<td class="calendar-day ${hasExpense} ${hasSchedule}" onclick="selectDate('${fullDate}')">${date}${expenseHTML}</td>`;
             
             if ((firstDay + date) % 7 === 0) {
                 calendarHTML += "</tr><tr>";
@@ -63,15 +65,15 @@ document.addEventListener("DOMContentLoaded", function () {
         generateCalendar(currentYear, currentMonth);
     };
 
+    // 가계부 수정 및 추가
     window.selectDate = function (date) {
         selectedDate = date;
         modal.style.display = "block";
+        renderExpenseList(selectedDate);
     };
 
-    closeModal.addEventListener("click", function (e) {
-        if (e.target === modal || e.target === closeModal) {
-            modal.style.display = "none";
-        }
+    closeModal.addEventListener("click", function () {
+        modal.style.display = "none";
     });
 
     saveExpense.addEventListener("click", function () {
@@ -84,15 +86,56 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (!schedules[selectedDate]) {
-            schedules[selectedDate] = { expenses: [] };  // 빈 배열로 초기화
+            schedules[selectedDate] = { expenses: [] };
         }
 
         schedules[selectedDate].expenses.push({ item, amount });
         localStorage.setItem("schedules", JSON.stringify(schedules));
-
         modal.style.display = "none";
         generateCalendar(currentYear, currentMonth);
+        renderExpenseList(selectedDate);
     });
 
-    generateCalendar(currentYear, currentMonth);
+    // 가계부 항목 렌더링
+    function renderExpenseList(date) {
+        const expenses = schedules[date]?.expenses || [];
+        expenseList.innerHTML = "";
+        expenses.forEach(expense => {
+            const li = document.createElement("li");
+            li.textContent = `${expense.item}: ${expense.amount}원`;
+            expenseList.appendChild(li);
+        });
+        renderExpenseChart(expenses); // 그래프 업데이트
+    }
+
+    // 소비 내역 그래프 렌더링
+    function renderExpenseChart(expenses) {
+        const amounts = expenses.map(exp => parseInt(exp.amount));
+        const totalAmount = amounts.reduce((a, b) => a + b, 0);
+        const averageAmount = amounts.length > 0 ? totalAmount / amounts.length : 0;
+
+        new Chart(expenseChartCanvas, {
+            type: 'bar',
+            data: {
+                labels: ['Average'],
+                datasets: [{
+                    label: '평균 소비 금액',
+                    data: [averageAmount],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    }
+
+    // 캘린더와 연동되는 일정 업데이트
+    window.addEventListener("load", function () {
+        generateCalendar(currentYear, currentMonth);
+    });
 });

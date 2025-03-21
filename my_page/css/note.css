@@ -1,0 +1,29 @@
+/* 기본 스타일 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* 모든 요소에 box-sizing 설정 */
+}
+
+/* 제목 스타일 */
+#title {
+    text-align: center;
+    justify-content: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+/* 네비게이션 바 */
+.nav_Bar {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    z-index: 10; /* 네비게이션 바가 다른 요소 위에 오도록 설정 */
+}
+
+.nav_Bar li {
+    list-style: none;
+    text-align: center;
+}
