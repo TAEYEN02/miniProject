@@ -1,7 +1,37 @@
 *{
-    padding:0;
-    margin:0;
+    margin : 0;
+    padding : 0;
 }
+/* 제목 스타일 */
+#title {
+    text-align: center;
+    justify-content: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+/* 네비게이션 바 */
+.nav_Bar {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    z-index: 10; /* 네비게이션 바가 다른 요소 위에 오도록 설정 */
+}
+
+.nav_Bar li {
+    list-style: none;
+    text-align: center;
+}
+.content-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+
 #calendar-container {
     display: flex;
     flex-direction: column;
@@ -11,8 +41,9 @@
 }
 
 #calendar {
-    width: auto;
+    width: 100%;
     border-collapse: collapse;
+    justify-content: center;
 }
 
 #calendar th, #calendar td {
@@ -20,10 +51,44 @@
     width: 50px;
     height: 50px;
     text-align: center;
+    min-width: 40px;  /* 최소 너비를 설정 */
+    min-height: 40px;  /* 최소 높이를 설정 */
+    cursor: pointer;
 }
 
 #date-content {
     text-align: center;
     margin-bottom: 20px;
 }
+.modal {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 8px;
+}
+
+.modal-content {
+    text-align: center;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+}
+.has-expense {
+    background-color: lightyellow; /* 가계부 입력된 날짜 표시 */
+}
+
+.expense-list {
+    font-size: 10px;
+    color: darkblue;
+    margin-top: 3px;
+}
+
 

@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 let deleteButton = document.createElement("button");
                 deleteButton.innerText = "❌";
-                deleteButton.onclick = function () {
+                deleteButton.onclick = function () { 
                     removeSchedule(date, index);
                 };
 

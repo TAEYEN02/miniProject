@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>가계부</title>
-
-    <style src="/css/date.css"></style>
+    <link rel="stylesheet" href="/css/date.css">
 </head>
 
 <body>
@@ -28,6 +27,16 @@
             <div id="calendar"></div> <!-- 캘린더 -->
         </div>
     </div>
+    </div>
+
+    <div id="expense-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>가계부 입력</h3>
+            <label>항목: <input type="text" id="expense-item"></label><br>
+            <label>금액: <input type="number" id="expense-amount"></label><br>
+            <button id="save-expense">저장</button>
+        </div>
     </div>
 
     <script src="/js/date.js"></script>
