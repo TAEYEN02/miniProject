@@ -42,9 +42,11 @@
 }
 
 #calendar {
+    display: block;
     width: 100%;
     border-collapse: collapse;
     justify-content: center;
+    margin:auto;
 }
 
 #calendar th, #calendar td {
