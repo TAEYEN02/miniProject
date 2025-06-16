@@ -5,5 +5,6 @@ Clone_Coding <Google.com>
 
 ## MY_Page 만들기
 = HTML, CSS,JS
-![image](https://github.com/user-attachments/assets/cfc4f0b9-51ee-457a-b38d-66b331980038)
+=> 배우고 나서 간단하게 만들어보기
 => main page 구상 후 html,css로 만들기
+
