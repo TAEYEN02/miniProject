@@ -1,5 +1,3 @@
-## 1DAY1Commit 도전기
----
 ## First_Project
 Clone_Coding <Google.com>
 
